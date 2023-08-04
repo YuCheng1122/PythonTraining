@@ -57,3 +57,57 @@ def mycar(cars, func):
 
 dreamcars = ['porsche', 'rolls royce', 'maserati']
 mycar(dreamcars, lambda carbrand: "My dream car is" + carbrand.title())
+
+#匿名函數使用與filter(func, iterable: 可以重複執行，例如字串(String)、串列(List)或元組(tuple)的元素(item)放入func(item)內，
+#然後將func()函數執行結果是True的元素(item)組成新的篩選物件(filter object)回傳)
+
+def oddfn(x):
+    return x if (x%2==1) else None
+mylist=[5,10,20]
+filter_object= filter(oddfn,mylist)
+
+print('Odd list:',[item for item in filter_object])
+
+oddlist = list(filter(lambda x:(x%2==1),mylist))
+print('oddlist',oddlist)
+
+#map(func,iterable)將會對iterable 進行重複執行
+squarelist = list(map(lambda x: x**2,mylist))
+print(type(squarelist))
+print('squarelist',squarelist)
+
+#實作字串轉整數
+#reduce(func,iterable) iterable
+from functools import reduce
+def strToInt(s):
+    def func(x,y):
+        print(x)
+        print(y)
+        return 10*x+y
+    def charToNum(s):
+        print('s=',type(s),s)
+        mydict = {'5':5,'4':4,'8':8,'7':7}
+        n=mydict[s]
+        print('n=',type(n),n)
+        return n
+    return reduce(func,map(charToNum,s))
+string = '5487'
+x=strToInt(string)+10
+print(x)
+
+#Lamda 簡化的版本
+def strToInt(s):
+    def charToNum(s):
+        return {'5':5,'4':4,'8':8,'7':7}[s]
+    return reduce(lambda x,y:x*10+y, map(charToNum,s))
+x=strToInt(string)+10
+print(x)
+
+#x.sort(key=None, reverse=False)
+str_len=lambda x:len(x)
+strs=['abc','abcd']
+print(type(str_len(e) for e in strs))
+print([str_len(e)for e in strs])
+
+
+
