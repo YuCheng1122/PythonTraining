@@ -51,3 +51,83 @@ def iter(n):
 myiter = iter(5)
 for iter in myiter:
     print(iter)
+    
+#串列生成(list generator)
+list_square = [n**2 for n in range(1,6)]
+print(list_square)
+
+#生成器與迭代生成
+list_square = (n**2 for n in range(1,6))
+for data in list_square:
+    print(data)
+    
+#做一個Range() 函數
+def myRange(start=0, end=100, step=1):
+    n = start
+    while n < end:
+        yield n
+        n += step
+print(type(myRange))
+for x in myRange(1,5):
+    print(x)    
+#做一個費波數
+def fibonaci(n):
+    a,b = 0,1
+    count = 0
+    while count < n:
+        yield a
+        a,b = b, a+b
+        count +=1
+fib = fibonaci(10)
+for num in fib:
+    print(num,end=' ')
+ 
+#裝飾器(Decorator): 想在函數內增加一些功能，但是不想更改原本的函數，這時可以使用裝飾器。
+def greeting(string):
+    return string
+
+
+def errcheck(func):
+    def newFunc(*args):
+        if args[1] != 0:
+            result =func(*args)
+        else: 
+            result = '除數不可為0'
+    return newFunc
+@errcheck
+def mydiv(x,y):
+    return x/y
+print(mydiv(6,2))
+
+#函數重新設計記錄一篇文章每個單字出現次數
+def modifySong(songStr):
+    for ch in songStr:
+        if ch in '.,?':
+            songStr = songStr.replace(ch,'')
+    return songStr
+
+def wordCount(songCount):
+    global mydict
+    songList = songCount.split()
+    print('down below is list')
+    print(songList)
+    mydict = {wd: songList.count(wd) for wd in set(songList)}
+    
+data = """ARE ARE ,,,, YOU YOU YOU,,, ???? HAPPY HAPPY"""
+
+mydict = {}
+print('chang to lower case')
+song = modifySong(data.lower())
+print(song)
+wordCount(song)
+print('result:')
+print(mydict)
+
+#Prime Number
+def isPrime(num):
+    """Test if num is prime"""
+    for n in range(2,num):
+        if num % n ==0:
+            return False
+    return True
+
