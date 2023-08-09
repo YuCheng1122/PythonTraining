@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "e:\Python王者歸來\Chapter15 - Debug\15-1.py", line 35, in <module>
+    passWord(pwd)
+  File "e:\Python王者歸來\Chapter15 - Debug\15-1.py", line 31, in passWord
+    raise Exception('Too Long')
+Exception: Too Long
+Traceback (most recent call last):
+  File "e:\Python王者歸來\Chapter15 - Debug\15-1.py", line 35, in <module>
+    passWord(pwd)
+  File "e:\Python王者歸來\Chapter15 - Debug\15-1.py", line 29, in passWord
+    raise Exception('Too short')
+Exception: Too short
