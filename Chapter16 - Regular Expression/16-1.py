@@ -52,3 +52,25 @@ searchStr(pattern, msg2)
 
 pattern2 = '(son){3,5}?' # Not Greedy
 searchStr(pattern2,msg2)
+
+#re.match(): 只會比對開頭而已
+msg = 'John will attend my party tonight.'
+pattern ='John'
+txt = re.match(pattern, msg)
+if txt != None:
+     print('Yes')
+
+#group(): 傳回搜尋到的字串， end(): 搜尋到字串的結束位置， start(): 搜尋到字串的起始位置
+
+#sub(): 基礎用法 --> result = re.sub(pattern, newstr, msg) pattern為欲搜尋字串，成功後用newstr取代，
+
+pattern = r"""
+(\d{2})|\(d{2}\)?
+(\s|-)?
+\d{8}
+(\s*(ext|ext.)\s*\d{2,4})?
+)"""
+
+phoneNum = re.findall(pattern, msg, re.VERBOSE)
+for num in phoneNum:
+     print(num[0])
